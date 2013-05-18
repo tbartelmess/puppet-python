@@ -67,6 +67,7 @@ define python::requirements (
   exec { "python_requirements_check_${name}":
     command => "sha1sum ${requirements} > ${req_crc}",
     unless  => "sha1sum -c ${req_crc}",
+    path    => "/usr/bin",
     user    => $owner,
     require => File[$requirements],
   }
